@@ -103,6 +103,8 @@ namespace goods_movement_back
 
             services.AddTransient<UserService>();
             services.AddTransient<UserQueryService>();
+            services.AddTransient<OperationsService>();
+            services.AddTransient<OperationsQueryService>();
 
         }
 

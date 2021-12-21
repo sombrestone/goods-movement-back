@@ -2,6 +2,7 @@
 using goods_movement_back.Model;
 using goods_movement_back.ModelView;
 using goods_movement_back.ModelView.Department;
+using goods_movement_back.ModelView.Operations.Arrival;
 using goods_movement_back.ModelView.Shop;
 using goods_movement_back.ModelView.Supplier;
 using goods_movement_back.ModelView.Unit;
@@ -34,6 +35,10 @@ namespace goods_movement_back
             
             CreateMap<VatSaveModel, VAT>().ReverseMap();
             CreateMap<VatUpdateModel, VAT>().ReverseMap();
+            
+            
+            
+            CreateMap<ArrivalSaveModel, Consignment>();
         }
     }
 }

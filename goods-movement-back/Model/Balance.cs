@@ -5,7 +5,7 @@ namespace goods_movement_back.Model
     public class Balance
     {
         public Guid Id { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
         
         public Guid DepartmentId { get; set; }
         public virtual Department Department { get; set; }
