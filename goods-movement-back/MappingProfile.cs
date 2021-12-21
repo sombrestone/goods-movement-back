@@ -5,6 +5,7 @@ using goods_movement_back.ModelView.Department;
 using goods_movement_back.ModelView.Shop;
 using goods_movement_back.ModelView.Supplier;
 using goods_movement_back.ModelView.Unit;
+using goods_movement_back.ModelView.VAT;
 
 namespace goods_movement_back
 {
@@ -30,6 +31,9 @@ namespace goods_movement_back
             CreateMap<SupplierSaveModel, Supplier>().ReverseMap();
             CreateMap<SupplierUpdateModel, Supplier>().ReverseMap();
             CreateMap<SupplierModel, Supplier>().ReverseMap();
+            
+            CreateMap<VatSaveModel, VAT>().ReverseMap();
+            CreateMap<VatUpdateModel, VAT>().ReverseMap();
         }
     }
 }

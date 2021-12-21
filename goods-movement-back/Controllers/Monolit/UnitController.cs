@@ -39,12 +39,13 @@ namespace goods_movement_back.Controllers
 
         
         [HttpPost]
+        
         public Guid Post([FromBody] UnitSaveModel unitSave)
         {
             var unit = _mapper.Map<Unit>(unitSave);
             unit.Id = Guid.NewGuid();
             _context.Units.Add(unit);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return unit.Id;
         }
 
@@ -52,7 +53,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] UnitUpdateModel unit)
         {
             _context.Units.Update(_mapper.Map<Unit>(unit));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         
@@ -60,7 +61,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Units.Remove(_context.Units.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

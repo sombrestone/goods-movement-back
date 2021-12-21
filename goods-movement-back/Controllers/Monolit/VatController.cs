@@ -41,7 +41,7 @@ namespace goods_movement_back.Controllers
             var vat = _mapper.Map<VAT>(vatSave);
             vat.Id = Guid.NewGuid();
             _context.Vats.Add(vat);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return vat.Id;
         }
         
@@ -49,7 +49,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] VatUpdateModel vat)
         {
             _context.Vats.Update(_mapper.Map<VAT>(vat));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         
                 
@@ -57,7 +57,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Vats.Remove(_context.Vats.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

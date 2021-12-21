@@ -1,20 +1,20 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace goods_movement_back.Model
+namespace goods_movement_back.ModelView.Worker
 {
-    public class Worker
+    public class WorkerRegistrationModel
     {
-        public Guid Id { get; set; }
+        [Required]
         public string Login { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
         public string Firstname { get; set; }
+        [Required]
         public string Lastname { get; set; }
+        [Required]
         public string Patronymic { get; set; }
-
         public Guid? DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
-        
-        public Guid RoleId { get; set; }
-        public virtual Role Role { get; set; }
     }
 }

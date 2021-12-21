@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kirill\\Desktop\\курсач\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj": {}
+    "C:\\Users\\kir79\\Desktop\\goods movement\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kirill\\Desktop\\курсач\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj": {
+    "C:\\Users\\kir79\\Desktop\\goods movement\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kirill\\Desktop\\курсач\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj",
+        "projectUniqueName": "C:\\Users\\kir79\\Desktop\\goods movement\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj",
         "projectName": "goods-movement-back",
-        "projectPath": "C:\\Users\\Kirill\\Desktop\\курсач\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj",
-        "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kirill\\Desktop\\курсач\\goods-movement-back\\goods-movement-back\\obj\\",
+        "projectPath": "C:\\Users\\kir79\\Desktop\\goods movement\\goods-movement-back\\goods-movement-back\\goods-movement-back.csproj",
+        "packagesPath": "C:\\Users\\kir79\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kir79\\Desktop\\goods movement\\goods-movement-back\\goods-movement-back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Microsoft\\Xamarin\\NuGet"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\kir79\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

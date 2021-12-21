@@ -5,6 +5,7 @@ using AutoMapper;
 using goods_movement_back.Model;
 using goods_movement_back.ModelView;
 using goods_movement_back.ModelView.Unit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AppContext = goods_movement_back.Model.AppContext;
 
@@ -50,7 +51,7 @@ namespace goods_movement_back.Controllers
             var product = _mapper.Map<Product>(productSave);
             product.Id = Guid.NewGuid();
             _context.Products.Add(product);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return product.Id;
         }
 
@@ -58,7 +59,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] ProductUpdateModel product)
         {
             _context.Products.Update(_mapper.Map<Product>(product));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         
@@ -66,7 +67,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Products.Remove(_context.Products.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace goods_movement_back.Controllers
             var supplier = _mapper.Map<Supplier>(supplierSave);
             supplier.Id = Guid.NewGuid();
             _context.Suppliers.Add(supplier);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return supplier.Id;
         }
         
@@ -48,7 +48,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] SupplierUpdateModel supplier)
         {
             _context.Suppliers.Update(_mapper.Map<Supplier>(supplier));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         
                 
@@ -56,7 +56,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Suppliers.Remove(_context.Suppliers.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

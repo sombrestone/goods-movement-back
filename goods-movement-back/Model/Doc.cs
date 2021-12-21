@@ -8,7 +8,6 @@ namespace goods_movement_back.Model
         public string Number { get; set; }
         public DateTime Date { get; set; }
         
-        public Guid DocTypeId { get; set; }
-        public virtual DocType DocType { get; set; }
+        public int DocType { get; set; }
     }
 }

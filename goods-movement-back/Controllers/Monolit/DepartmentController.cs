@@ -38,12 +38,18 @@ namespace goods_movement_back.Controllers
                     ShopId = shop.Id,
                     ShopName = shop.Name
                 }).ToList();
-
+        
 
         [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(DepartmentModel), 200)]
         public DepartmentModel Get([FromRoute] Guid id) =>
             Get().Where(x => x.Id == id).FirstOrDefault();
+        
+        
+        [HttpGet("get-by-shop/{id:guid}")]
+        [ProducesResponseType(typeof(DepartmentModel), 200)]
+        public IEnumerable<DepartmentModel> GetByShop([FromRoute] Guid id) =>
+            Get().Where(x => x.ShopId == id);
 
 
         [HttpPost]
@@ -52,7 +58,7 @@ namespace goods_movement_back.Controllers
             var department = _mapper.Map<Department>(departmentSave);
             department.Id = Guid.NewGuid();
             _context.Departments.Add(department);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return department.Id;
         }
 
@@ -60,7 +66,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] DepartmentUpdateModel department)
         {
             _context.Departments.Update(_mapper.Map<Department>(department));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
 
@@ -68,7 +74,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Departments.Remove(_context.Departments.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         
     }

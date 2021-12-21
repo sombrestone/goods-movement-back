@@ -43,7 +43,7 @@ namespace goods_movement_back.Controllers
             var shop = _mapper.Map<Shop>(shopSave);
             shop.Id = Guid.NewGuid();
             _context.Shops.Add(shop);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return shop.Id;
         }
         
@@ -51,7 +51,7 @@ namespace goods_movement_back.Controllers
         public void Put([FromBody] ShopUpdateModel shop)
         {
             _context.Shops.Update(_mapper.Map<Shop>(shop));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         
                 
@@ -59,7 +59,7 @@ namespace goods_movement_back.Controllers
         public void Delete(Guid id)
         {
             _context.Shops.Remove(_context.Shops.Find(id));
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
         
     }
