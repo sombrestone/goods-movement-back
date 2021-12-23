@@ -4,6 +4,7 @@
     {
         Arrival,
         Sale,
-        Return
+        Return,
+        Move
     }
 }

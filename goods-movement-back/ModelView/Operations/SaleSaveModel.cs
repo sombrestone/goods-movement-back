@@ -8,6 +8,8 @@ namespace goods_movement_back.ModelView.Operations.Arrival
         [Required]
         public Guid ConsignmentId { get; set; }
         [Required]
+        public Guid DepartmentId { get; set; }
+        [Required]
         public int Number { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using goods_movement_back.Enum;
 using goods_movement_back.ModelView.Operations.Arrival;
 using goods_movement_back.Service;
@@ -80,7 +81,35 @@ namespace goods_movement_back.Controllers
         {
             try
             {
-                return Ok(_service.GetBalance(depId));
+                return Ok(_service.GetSmartBalance(depId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost("balance")]
+        [ProducesResponseType(typeof(IEnumerable<BalanceModel>), 200)]
+        public IActionResult Balance([FromBody] BalanceGetModel model)
+        { 
+            try
+            {
+                return Ok(_service.GetBalance(model.ShopId,model.DepIds));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost("movement")]
+        [ProducesResponseType(typeof(IEnumerable<MovementModel>), 200)]
+        public IActionResult Movement([FromBody] BalanceGetModel model)
+        { 
+            try
+            {
+                return Ok(_service.GetMovement(model.ShopId,model.DepIds));
             }
             catch (Exception e)
             {

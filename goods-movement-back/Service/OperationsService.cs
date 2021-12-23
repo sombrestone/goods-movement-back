@@ -37,25 +37,41 @@ namespace goods_movement_back.Service
 
         public Guid Sale(SaleSaveModel model, 
             DocType docType=DocType.Sale, 
-            Guid? depId=null)
+            bool plus=false)
         {
             var docId = SaveDoc(docType);
-            var departmentId =depId ?? _context.Balances
-                .Where(x => x.ConsignmentId == model.ConsignmentId)
-                .Select(x=>x.DepartmentId).FirstOrDefault();
             var balanceId=SaveBalance(model.ConsignmentId,docId,
-                departmentId,depId==null?-Math.Abs(model.Number):Math.Abs(model.Number));
+                model.DepartmentId,(!plus)?-Math.Abs(model.Number):Math.Abs(model.Number));
             _context.SaveChanges();
             return balanceId;
         }
 
-        public Guid Move(MoveSaveModel model)
+        public IEnumerable<Guid> Move(MoveSaveModel model)
         {
-            return new Guid();
+            var saleModel = new SaleSaveModel
+            {
+                ConsignmentId = model.ConsignmentId,
+                Number = model.Number,
+                DepartmentId = model.FromDepId
+            };
+            var moveFromId = Sale(saleModel, DocType.Move);
+            saleModel.DepartmentId = model.ToDepId;
+            var moveToId=Sale(saleModel, DocType.Move, true);
+            return new List<Guid> {moveFromId, moveToId};
         }
 
-        public IEnumerable<BalanceSmartModel> GetBalance(Guid departmentId) =>
-            _queryService.GetBalance(departmentId);
+        public IEnumerable<BalanceSmartModel> GetSmartBalance(Guid departmentId) =>
+            _queryService.GetSmartBalance(departmentId);
+
+        public IEnumerable<BalanceModel> GetBalance(Guid shopId, IEnumerable<Guid> depIds) =>
+            (depIds != null && depIds.ToList().Count > 0)
+                ? _queryService.GetBalance(depIds)
+                : _queryService.GetBalance(shopId);
+        
+        public IEnumerable<MovementModel> GetMovement(Guid shopId, IEnumerable<Guid> depIds) =>
+            (depIds != null && depIds.ToList().Count > 0)
+                ? _queryService.GetMovement(depIds)
+                : _queryService.GetMovement(shopId);
 
         private Guid SaveBalance(Guid consignmentId, Guid docId,Guid departmentId, int number)
         {
