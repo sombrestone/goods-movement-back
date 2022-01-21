@@ -1,4 +1,5 @@
 ﻿using System;
+using goods_movement_back.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace goods_movement_back.Model
@@ -24,13 +25,28 @@ namespace goods_movement_back.Model
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var admin = new Role {Id = Guid.NewGuid(), Name = "admin", PostName = "Администратор"};
             modelBuilder.Entity<Role>().HasData(
                 new Role[] 
                 {
-                    new Role { Id = Guid.NewGuid(),Name="admin", PostName = "Администратор"},
+                    admin,
                     new Role { Id = Guid.NewGuid(),Name="expert", PostName = "Товаровед"},
                     new Role { Id = Guid.NewGuid(),Name="manager", PostName = "Заведующий"},
                     new Role { Id = Guid.NewGuid(),Name="seller",  PostName = "Продавец"}
+                });
+            modelBuilder.Entity<Worker>().HasData(
+                new Worker[] 
+                {
+                    new Worker
+                    {
+                        Id = Guid.NewGuid(),
+                        Login = "admin",
+                        Password = UserService.HashPassword("admin"),
+                        RoleId = admin.Id,
+                        Firstname = "admin",
+                        Lastname = "admin",
+                        Patronymic = "admin"
+                    }
                 });
         }
     }

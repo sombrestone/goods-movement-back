@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using goods_movement_back.Model;
 using goods_movement_back.ModelView.Unit;
 using goods_movement_back.ModelView.Worker;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using AppContext = goods_movement_back.Model.AppContext;
 
 namespace goods_movement_back.Controllers
 {
@@ -20,19 +23,13 @@ namespace goods_movement_back.Controllers
     {
         private readonly UserService _service;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
+        private readonly AppContext _context;
 
         public UserController(UserService service, IConfiguration configuration)
         {
             _service = service;
             _configuration = configuration;
-        }
-        
-        [HttpPost]
-        [Route("registration")]
-        public async Task<IActionResult> Registration([FromBody] WorkerRegistrationModel user)
-        {
-            if (_service.NewUser(user)) return Ok("Пользователь успешно зарегистрирован");
-            else return Conflict("Пользователь существует.");
         }
         
         [HttpPost]
@@ -86,5 +83,32 @@ namespace goods_movement_back.Controllers
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        
+        
+        //[Authorize(Roles = "admin")]
+        [HttpPost]
+        [Route("registration")]
+        public async Task<IActionResult> Registration([FromBody] WorkerRegistrationModel user)
+        {
+            if (_service.NewUser(user)) return Ok("Пользователь успешно зарегистрирован");
+            else return Conflict("Пользователь существует.");
+        }
+        
+        //[Authorize(Roles = "admin")]
+        [HttpGet]
+        public  IEnumerable<WorkerModel> Get()
+        {
+            return _mapper.Map<List<WorkerModel>>(_context.Workers.ToList());
+        }
+        
+        //[Authorize(Roles = "admin")]
+        [HttpGet("{id:guid}")]
+        public void Delete([FromRoute] Guid id)
+        {
+            var user = _context.Workers.Where(x => x.Id == id).FirstOrDefault();
+            _context.Workers.Remove(user);
+            _context.SaveChanges();
+        }
+
     }
 }

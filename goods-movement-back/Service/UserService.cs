@@ -40,7 +40,7 @@ namespace goods_movement_back.Service
             return true;
         }
 
-        public string HashPassword(string password)
+        public static string HashPassword(string password)
         {
             return password;
         }
